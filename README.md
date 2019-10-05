@@ -1,4 +1,4 @@
-# vuex2
+# vuex3
 
 ## Project setup
 ```
