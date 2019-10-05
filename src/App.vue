@@ -2,9 +2,11 @@
   <div id="app">
     <div class="container">
         <titulo></titulo>
-        <div class="row">
+        <button type="button" class="btn btn-primary" @click="showNovoJogo">
+            Novo Jogo
+        </button>
+        <div class="row" v-show="visao == 'novojogo'">
             <div class="col-md-12">
-                
                 <novo-jogo></novo-jogo>
             </div>
         </div>
@@ -31,21 +33,6 @@ export default {
     Titulo, NovoJogo, TabelaClubes
   },
 
-  data(){
-
-    
-
-      return {
-          
-          //times: [],
-          timeCasa: null,
-          timeFora: null,
-          //visao : 'tabela',
-
-      };
-
-  },
-
   computed: {
       
       visao(){
@@ -55,19 +42,8 @@ export default {
 
   methods: {
 
-    //   showTabela(event){
-    //       window.console.log(event);
-    //       this.visao = 'tabela';
-    //   },
-
-    showTabela(visao){
-        this.visao = visao;
-    },
-
-    showPlacar({timeCasa, timeFora}){
-        this.timeCasa = timeCasa;
-        this.timeFora = timeFora;
-        this.visao = 'placar';
+    showNovoJogo(){
+        store.commit('show-time-novojogo');
     },
 
     ordenar(indice){

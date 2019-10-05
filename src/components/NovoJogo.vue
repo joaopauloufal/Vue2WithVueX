@@ -1,57 +1,79 @@
 <template>
     <div>
-        <button type="button" class="btn btn-primary" @click="criarNovoJogo">
-            Novo Jogo
-        </button>
-        <placar-modal :time-casa="timeCasa" :time-fora="timeFora" ref="modal"></placar-modal>
+        <div>
+            <placar :time-casa="timeCasa" :time-fora="timeFora" ref="placar"></placar>
+        </div>
+        <div>
+            <button type="button" class="btn btn-primary" @click="fimJogo">Fim de Jogo</button>
+        </div>
     </div>
 </template>
 
 <script>
 
-import PlacarModal from './PlacarModal.vue'
+import store from '../store.js';
+import Placar from './Placar.vue';
+
 
 export default {
 
     name: 'novo-jogo',
 
     components: {
-        PlacarModal
+        Placar
     },
-    
+
+
+
+    mounted(){
+        
+        this.criarNovoJogo(this.times);
+        
+    },
 
     data(){
         return {
             timeCasa: null,
-            timeFora: null,
-            times: this.timesColecao
+            timeFora: null
         }
     },
-    //props: ['times'],
-    inject: ['timesColecao'],
+
+    computed: {
+
+        times(){
+            return store.state.times;
+        }
+
+    },
+
 
     methods: {
 
-        criarNovoJogo(){
-            window.console.log(this.$refs);
+        criarNovoJogo(times){
+            
             var indiceCasa = Math.floor(Math.random() * 20);
             var indiceFora = Math.floor(Math.random() * 20);
 
-            // var timeCasa = this.$root.times[indiceCasa];
-            // var timeFora = this.$root.times[indiceFora];
-            //var timeCasa = this.timesColecao[indiceCasa];
-            //var timeFora = this.timesColecao[indiceFora];
-
-            this.timeCasa = this.timesColecao[indiceCasa];
-            this.timeFora = this.timesColecao[indiceFora];
-
-            var modal = this.$refs.modal;
-            window.console.log(modal);
-            modal.showModal();
-
-            //this.$emit('novo-jogo', {timeCasa, timeFora});
+            this.timeCasa = times[indiceCasa];
+            this.timeFora = times[indiceFora];
 
         },
+
+        fimJogo(){
+
+            var golsMarcados = parseInt(this.$refs.placar.golsCasa);
+            var golsSofridos = parseInt(this.$refs.placar.golsFora);
+            this.timeCasa.fimJogo(this.timeFora, golsMarcados, golsSofridos);
+            store.commit('update', this.timeCasa);
+            store.commit('update', this.timeFora);
+
+            store.commit('show-time-list');
+
+            
+            
+
+        },
+
 
     }
     
