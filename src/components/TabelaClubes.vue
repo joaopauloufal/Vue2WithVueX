@@ -33,6 +33,7 @@ import _ from 'lodash'
 import Clube from './Clube';
 import ClubesLibertadores from './ClubesLibertadores.vue';
 import ClubesRebaixados from './ClubesRebaixados.vue';
+import store from '../store.js';
 
 export default {
 
@@ -50,18 +51,22 @@ export default {
                 colunas : ['pontos', 'gm', 'gs', 'saldo'],
                 orientacao : ['desc', 'desc', 'asc', 'desc']
             },
-            times: this.timesColecao
+            
         }
 
     },
-    inject: ['timesColecao'],
+    //inject: ['timesColecao'],
 
     computed : {
+
+        times(){
+            return store.state.times;
+        },
 
 
         timesFiltrados(){
             window.console.log('ordenou', this.ordem);
-            var times = _.orderBy(this.timesColecao, this.ordem.colunas, this.ordem.orientacao);
+            var times = _.orderBy(this.times, this.ordem.colunas, this.ordem.orientacao);
             var self = this;
             return _.filter(times, function(time){
                 var busca = self.busca.toLowerCase();
@@ -72,7 +77,7 @@ export default {
         timesOrdered(){
 
            //return _.orderBy(this.times, this.ordem.colunas, this.ordem.orientacao);
-           return _.orderBy(this.timesColecao, this.ordem.colunas, this.ordem.orientacao);
+           return _.orderBy(this.times, this.ordem.colunas, this.ordem.orientacao);
 
         }
 

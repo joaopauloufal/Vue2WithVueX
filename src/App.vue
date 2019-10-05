@@ -4,13 +4,14 @@
         <titulo></titulo>
         <div class="row">
             <div class="col-md-12">
-                <novo-jogo :times="times"></novo-jogo>
+                
+                <novo-jogo></novo-jogo>
             </div>
         </div>
         <br>
         <div class="row">
             <div class="col-md-12" v-show="visao === 'tabela'">
-                <tabela-clubes :times="times"></tabela-clubes>
+                <tabela-clubes></tabela-clubes>
             </div>
         </div>
     </div>
@@ -22,6 +23,7 @@
 import Titulo from './components/Titulo.vue'
 import NovoJogo from './components/NovoJogo.vue'
 import TabelaClubes from './components/TabelaClubes.vue'
+import store from './store.js';
 
 export default {
   name: 'app',
@@ -31,32 +33,46 @@ export default {
 
   data(){
 
+    
+
       return {
-          times: [],
+          
+          //times: [],
           timeCasa: null,
           timeFora: null,
-          visao : 'tabela',
+          //visao : 'tabela',
 
       };
 
   },
 
+  computed: {
+      
+      visao(){
+          return store.state.view;
+      }
+  },
+
   methods: {
 
-      showTabela(event){
-          window.console.log(event);
-          this.visao = 'tabela';
-      },
+    //   showTabela(event){
+    //       window.console.log(event);
+    //       this.visao = 'tabela';
+    //   },
 
-      showPlacar({timeCasa, timeFora}){
-          this.timeCasa = timeCasa;
-          this.timeFora = timeFora;
-          this.visao = 'placar';
-      },
+    showTabela(visao){
+        this.visao = visao;
+    },
 
-      ordenar(indice){
-          this.$set(this.ordem.orientacao, indice, this.ordem.orientacao[indice] == 'desc' ? 'asc':'desc');
-      }
+    showPlacar({timeCasa, timeFora}){
+        this.timeCasa = timeCasa;
+        this.timeFora = timeFora;
+        this.visao = 'placar';
+    },
+
+    ordenar(indice){
+        this.$set(this.ordem.orientacao, indice, this.ordem.orientacao[indice] == 'desc' ? 'asc':'desc');
+    }
 
   },
 
