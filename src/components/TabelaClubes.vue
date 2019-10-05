@@ -29,11 +29,11 @@
 
 <script>
 
-import _ from 'lodash'
+import _ from 'lodash';
+import store from '../store.js';
 import Clube from './Clube';
 import ClubesLibertadores from './ClubesLibertadores.vue';
 import ClubesRebaixados from './ClubesRebaixados.vue';
-import store from '../store.js';
 
 export default {
 

@@ -13,6 +13,7 @@
 
 <script>
 
+import store from '../store.js';
 import Clube from './Clube.vue';
 
 export default {
@@ -23,12 +24,11 @@ export default {
         Clube
     },
 
-    props : ['times'],
 
     computed: {
 
         timesRebaixados(){
-            return this.times.slice(16, 20);
+            return store.getters.timesRebaixados;
         },
     }
     
