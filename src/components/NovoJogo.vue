@@ -65,7 +65,6 @@ export default {
             this.timeCasa.fimJogo(this.timeFora, golsMarcados, golsSofridos);
             store.commit('update', this.timeCasa);
             store.commit('update', this.timeFora);
-
             store.commit('show-time-list');
 
             

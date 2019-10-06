@@ -22,8 +22,6 @@
                 </tr>
             </tbody>
         </table>
-        <clubes-libertadores :times="timesOrdered"></clubes-libertadores>
-        <clubes-rebaixados :times="timesOrdered"></clubes-rebaixados>
     </div>
 </template>
 
@@ -32,15 +30,14 @@
 import _ from 'lodash';
 import store from '../store.js';
 import Clube from './Clube';
-import ClubesLibertadores from './ClubesLibertadores.vue';
-import ClubesRebaixados from './ClubesRebaixados.vue';
+
 
 export default {
 
     name: 'tabela-clubes',
 
     components: {
-        ClubesLibertadores, ClubesRebaixados, Clube
+        Clube
     },
 
     data(){
