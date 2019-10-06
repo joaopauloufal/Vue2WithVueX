@@ -26,7 +26,6 @@ export default {
 
 
     mounted(){
-        
         this.criarNovoJogo(this.times);
         
     },

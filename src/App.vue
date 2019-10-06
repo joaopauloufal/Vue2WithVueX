@@ -33,6 +33,10 @@ export default {
     Titulo, NovoJogo, TabelaClubes
   },
 
+  created(){
+      store.dispatch('load-times');
+  },
+
   computed: {
       
       visao(){
