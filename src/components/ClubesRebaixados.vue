@@ -28,7 +28,7 @@ export default {
     computed: {
 
         timesRebaixados(){
-            return store.state.timesRebaixados;
+            return store.getters.timesRebaixados;
         },
     }
     

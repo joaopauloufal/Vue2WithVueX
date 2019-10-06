@@ -8,10 +8,7 @@ Vue.use(VueResource);
 
 const state = {
     view: 'tabela',
-    times: [],
-    timesLibertadores: [],
-    timesRebaixados: []
-
+    times: []
 };
 
 const getters = {
@@ -35,7 +32,6 @@ const actions = {
 const mutations = {
     'set-times'(state, times){
         state.times = times;
-        
     },
     update(state, time){
 
@@ -43,8 +39,6 @@ const mutations = {
         
         if (index != -1){
             state.times[index] = time;
-            state.timesLibertadores = state.times.slice(0,6);
-            state.timesRebaixados = state.times.slice(16,20);
             
         }
 
@@ -70,7 +64,7 @@ const mutations = {
 
 export default new Vuex.Store({
     state,
-    //getters,
+    getters,
     mutations,
     actions
 

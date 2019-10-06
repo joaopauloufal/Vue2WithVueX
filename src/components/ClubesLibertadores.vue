@@ -27,7 +27,7 @@ export default {
     
     computed: {
         timesLibertadores(){
-            return store.state.timesLibertadores;
+            return store.getters.timesLibertadores;
         }
     
     }
