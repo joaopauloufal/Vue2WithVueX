@@ -24,7 +24,6 @@ export default {
         Clube
     },
 
-
     computed: {
 
         timesRebaixados(){

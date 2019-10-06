@@ -8,7 +8,7 @@ Vue.use(VueResource);
 
 const state = {
     view: 'tabela',
-    times: []
+    times: [],
 };
 
 const getters = {
